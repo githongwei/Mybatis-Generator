@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnct.goods.mapper.PaySourceMapper" >
+  <resultMap id="BaseResultMap" type="com.cnct.goods.model.po.PaySource" >
+    <id column="pay_source_id" property="paySourceId" jdbcType="CHAR" />
+    <result column="pay_source_name" property="paySourceName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pay_source_id, pay_source_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_pay_source
+    where pay_source_id = #{paySourceId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_pay_source
+    where pay_source_id = #{paySourceId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cnct.goods.model.po.PaySource" >
+    insert into t_pay_source (pay_source_id, pay_source_name)
+    values (#{paySourceId,jdbcType=CHAR}, #{paySourceName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnct.goods.model.po.PaySource" >
+    insert into t_pay_source
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paySourceId != null" >
+        pay_source_id,
+      </if>
+      <if test="paySourceName != null" >
+        pay_source_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paySourceId != null" >
+        #{paySourceId,jdbcType=CHAR},
+      </if>
+      <if test="paySourceName != null" >
+        #{paySourceName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnct.goods.model.po.PaySource" >
+    update t_pay_source
+    <set >
+      <if test="paySourceName != null" >
+        pay_source_name = #{paySourceName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pay_source_id = #{paySourceId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnct.goods.model.po.PaySource" >
+    update t_pay_source
+    set pay_source_name = #{paySourceName,jdbcType=VARCHAR}
+    where pay_source_id = #{paySourceId,jdbcType=CHAR}
+  </update>
+</mapper>

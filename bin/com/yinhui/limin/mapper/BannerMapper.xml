@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinhui.limin.mapper.BannerMapper" >
+  <resultMap id="BaseResultMap" type="com.yinhui.limin.model.po.Banner" >
+    <id column="banner_id" property="bannerId" jdbcType="VARCHAR" />
+    <result column="banner_location" property="bannerLocation" jdbcType="VARCHAR" />
+    <result column="banner_name" property="bannerName" jdbcType="VARCHAR" />
+    <result column="banner_img" property="bannerImg" jdbcType="VARCHAR" />
+    <result column="banner_url" property="bannerUrl" jdbcType="VARCHAR" />
+    <result column="banner_possion" property="bannerPossion" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    banner_id, banner_location, banner_name, banner_img, banner_url, banner_possion, 
+    create_time, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_banner
+    where banner_id = #{bannerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_banner
+    where banner_id = #{bannerId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yinhui.limin.model.po.Banner" >
+    insert into t_banner (banner_id, banner_location, banner_name, 
+      banner_img, banner_url, banner_possion, 
+      create_time, state)
+    values (#{bannerId,jdbcType=VARCHAR}, #{bannerLocation,jdbcType=VARCHAR}, #{bannerName,jdbcType=VARCHAR}, 
+      #{bannerImg,jdbcType=VARCHAR}, #{bannerUrl,jdbcType=VARCHAR}, #{bannerPossion,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{state,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinhui.limin.model.po.Banner" >
+    insert into t_banner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bannerId != null" >
+        banner_id,
+      </if>
+      <if test="bannerLocation != null" >
+        banner_location,
+      </if>
+      <if test="bannerName != null" >
+        banner_name,
+      </if>
+      <if test="bannerImg != null" >
+        banner_img,
+      </if>
+      <if test="bannerUrl != null" >
+        banner_url,
+      </if>
+      <if test="bannerPossion != null" >
+        banner_possion,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bannerId != null" >
+        #{bannerId,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerLocation != null" >
+        #{bannerLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerName != null" >
+        #{bannerName,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerImg != null" >
+        #{bannerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerUrl != null" >
+        #{bannerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerPossion != null" >
+        #{bannerPossion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinhui.limin.model.po.Banner" >
+    update t_banner
+    <set >
+      <if test="bannerLocation != null" >
+        banner_location = #{bannerLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerName != null" >
+        banner_name = #{bannerName,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerImg != null" >
+        banner_img = #{bannerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerUrl != null" >
+        banner_url = #{bannerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerPossion != null" >
+        banner_possion = #{bannerPossion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=CHAR},
+      </if>
+    </set>
+    where banner_id = #{bannerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinhui.limin.model.po.Banner" >
+    update t_banner
+    set banner_location = #{bannerLocation,jdbcType=VARCHAR},
+      banner_name = #{bannerName,jdbcType=VARCHAR},
+      banner_img = #{bannerImg,jdbcType=VARCHAR},
+      banner_url = #{bannerUrl,jdbcType=VARCHAR},
+      banner_possion = #{bannerPossion,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=CHAR}
+    where banner_id = #{bannerId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinhui.limin.mapper.SettlementMapper" >
+  <resultMap id="BaseResultMap" type="com.yinhui.limin.model.po.Settlement" >
+    <id column="settlement_id" property="settlementId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="settlement_month" property="settlementMonth" jdbcType="VARCHAR" />
+    <result column="income" property="income" jdbcType="DOUBLE" />
+    <result column="tsf" property="tsf" jdbcType="DOUBLE" />
+    <result column="favourable" property="favourable" jdbcType="DOUBLE" />
+    <result column="tax" property="tax" jdbcType="DOUBLE" />
+    <result column="real_income" property="realIncome" jdbcType="DOUBLE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    settlement_id, user_id, settlement_month, income, tsf, favourable, tax, real_income, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_settlement
+    where settlement_id = #{settlementId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_settlement
+    where settlement_id = #{settlementId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yinhui.limin.model.po.Settlement" >
+    insert into t_settlement (settlement_id, user_id, settlement_month, 
+      income, tsf, favourable, 
+      tax, real_income, create_time
+      )
+    values (#{settlementId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{settlementMonth,jdbcType=VARCHAR}, 
+      #{income,jdbcType=DOUBLE}, #{tsf,jdbcType=DOUBLE}, #{favourable,jdbcType=DOUBLE}, 
+      #{tax,jdbcType=DOUBLE}, #{realIncome,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinhui.limin.model.po.Settlement" >
+    insert into t_settlement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="settlementId != null" >
+        settlement_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="settlementMonth != null" >
+        settlement_month,
+      </if>
+      <if test="income != null" >
+        income,
+      </if>
+      <if test="tsf != null" >
+        tsf,
+      </if>
+      <if test="favourable != null" >
+        favourable,
+      </if>
+      <if test="tax != null" >
+        tax,
+      </if>
+      <if test="realIncome != null" >
+        real_income,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="settlementId != null" >
+        #{settlementId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementMonth != null" >
+        #{settlementMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        #{income,jdbcType=DOUBLE},
+      </if>
+      <if test="tsf != null" >
+        #{tsf,jdbcType=DOUBLE},
+      </if>
+      <if test="favourable != null" >
+        #{favourable,jdbcType=DOUBLE},
+      </if>
+      <if test="tax != null" >
+        #{tax,jdbcType=DOUBLE},
+      </if>
+      <if test="realIncome != null" >
+        #{realIncome,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinhui.limin.model.po.Settlement" >
+    update t_settlement
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="settlementMonth != null" >
+        settlement_month = #{settlementMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        income = #{income,jdbcType=DOUBLE},
+      </if>
+      <if test="tsf != null" >
+        tsf = #{tsf,jdbcType=DOUBLE},
+      </if>
+      <if test="favourable != null" >
+        favourable = #{favourable,jdbcType=DOUBLE},
+      </if>
+      <if test="tax != null" >
+        tax = #{tax,jdbcType=DOUBLE},
+      </if>
+      <if test="realIncome != null" >
+        real_income = #{realIncome,jdbcType=DOUBLE},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where settlement_id = #{settlementId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinhui.limin.model.po.Settlement" >
+    update t_settlement
+    set user_id = #{userId,jdbcType=VARCHAR},
+      settlement_month = #{settlementMonth,jdbcType=VARCHAR},
+      income = #{income,jdbcType=DOUBLE},
+      tsf = #{tsf,jdbcType=DOUBLE},
+      favourable = #{favourable,jdbcType=DOUBLE},
+      tax = #{tax,jdbcType=DOUBLE},
+      real_income = #{realIncome,jdbcType=DOUBLE},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where settlement_id = #{settlementId,jdbcType=VARCHAR}
+  </update>
+</mapper>

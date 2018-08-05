@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnct.web.mapper.SwjgbmMapper" >
+  <resultMap id="BaseResultMap" type="com.cnct.web.model.po.Swjgbm" >
+    <id column="SWJGBM" property="swjgbm" jdbcType="VARCHAR" />
+    <result column="SWJGMC" property="swjgmc" jdbcType="VARCHAR" />
+    <result column="SWJGJC" property="swjgjc" jdbcType="VARCHAR" />
+    <result column="SWJGSJ" property="swjgsj" jdbcType="VARCHAR" />
+    <result column="JGJCBM" property="jgjcbm" jdbcType="VARCHAR" />
+    <result column="SWJGWS" property="swjgws" jdbcType="BIGINT" />
+    <result column="SWJGBZ" property="swjgbz" jdbcType="VARCHAR" />
+    <result column="ZSJGBZ" property="zsjgbz" jdbcType="VARCHAR" />
+    <result column="XTQYBZ" property="xtqybz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SWJGBM, SWJGMC, SWJGJC, SWJGSJ, JGJCBM, SWJGWS, SWJGBZ, ZSJGBZ, XTQYBZ
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_swjgbm
+    where SWJGBM = #{swjgbm,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_swjgbm
+    where SWJGBM = #{swjgbm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cnct.web.model.po.Swjgbm" >
+    insert into t_swjgbm (SWJGBM, SWJGMC, SWJGJC, 
+      SWJGSJ, JGJCBM, SWJGWS, 
+      SWJGBZ, ZSJGBZ, XTQYBZ
+      )
+    values (#{swjgbm,jdbcType=VARCHAR}, #{swjgmc,jdbcType=VARCHAR}, #{swjgjc,jdbcType=VARCHAR}, 
+      #{swjgsj,jdbcType=VARCHAR}, #{jgjcbm,jdbcType=VARCHAR}, #{swjgws,jdbcType=BIGINT}, 
+      #{swjgbz,jdbcType=VARCHAR}, #{zsjgbz,jdbcType=VARCHAR}, #{xtqybz,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnct.web.model.po.Swjgbm" >
+    insert into t_swjgbm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="swjgbm != null" >
+        SWJGBM,
+      </if>
+      <if test="swjgmc != null" >
+        SWJGMC,
+      </if>
+      <if test="swjgjc != null" >
+        SWJGJC,
+      </if>
+      <if test="swjgsj != null" >
+        SWJGSJ,
+      </if>
+      <if test="jgjcbm != null" >
+        JGJCBM,
+      </if>
+      <if test="swjgws != null" >
+        SWJGWS,
+      </if>
+      <if test="swjgbz != null" >
+        SWJGBZ,
+      </if>
+      <if test="zsjgbz != null" >
+        ZSJGBZ,
+      </if>
+      <if test="xtqybz != null" >
+        XTQYBZ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="swjgbm != null" >
+        #{swjgbm,jdbcType=VARCHAR},
+      </if>
+      <if test="swjgmc != null" >
+        #{swjgmc,jdbcType=VARCHAR},
+      </if>
+      <if test="swjgjc != null" >
+        #{swjgjc,jdbcType=VARCHAR},
+      </if>
+      <if test="swjgsj != null" >
+        #{swjgsj,jdbcType=VARCHAR},
+      </if>
+      <if test="jgjcbm != null" >
+        #{jgjcbm,jdbcType=VARCHAR},
+      </if>
+      <if test="swjgws != null" >
+        #{swjgws,jdbcType=BIGINT},
+      </if>
+      <if test="swjgbz != null" >
+        #{swjgbz,jdbcType=VARCHAR},
+      </if>
+      <if test="zsjgbz != null" >
+        #{zsjgbz,jdbcType=VARCHAR},
+      </if>
+      <if test="xtqybz != null" >
+        #{xtqybz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnct.web.model.po.Swjgbm" >
+    update t_swjgbm
+    <set >
+      <if test="swjgmc != null" >
+        SWJGMC = #{swjgmc,jdbcType=VARCHAR},
+      </if>
+      <if test="swjgjc != null" >
+        SWJGJC = #{swjgjc,jdbcType=VARCHAR},
+      </if>
+      <if test="swjgsj != null" >
+        SWJGSJ = #{swjgsj,jdbcType=VARCHAR},
+      </if>
+      <if test="jgjcbm != null" >
+        JGJCBM = #{jgjcbm,jdbcType=VARCHAR},
+      </if>
+      <if test="swjgws != null" >
+        SWJGWS = #{swjgws,jdbcType=BIGINT},
+      </if>
+      <if test="swjgbz != null" >
+        SWJGBZ = #{swjgbz,jdbcType=VARCHAR},
+      </if>
+      <if test="zsjgbz != null" >
+        ZSJGBZ = #{zsjgbz,jdbcType=VARCHAR},
+      </if>
+      <if test="xtqybz != null" >
+        XTQYBZ = #{xtqybz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SWJGBM = #{swjgbm,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnct.web.model.po.Swjgbm" >
+    update t_swjgbm
+    set SWJGMC = #{swjgmc,jdbcType=VARCHAR},
+      SWJGJC = #{swjgjc,jdbcType=VARCHAR},
+      SWJGSJ = #{swjgsj,jdbcType=VARCHAR},
+      JGJCBM = #{jgjcbm,jdbcType=VARCHAR},
+      SWJGWS = #{swjgws,jdbcType=BIGINT},
+      SWJGBZ = #{swjgbz,jdbcType=VARCHAR},
+      ZSJGBZ = #{zsjgbz,jdbcType=VARCHAR},
+      XTQYBZ = #{xtqybz,jdbcType=VARCHAR}
+    where SWJGBM = #{swjgbm,jdbcType=VARCHAR}
+  </update>
+</mapper>

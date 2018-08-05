@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnct.web.mapper.QylxMapper" >
+  <resultMap id="BaseResultMap" type="com.cnct.web.model.po.Qylx" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="qylx" property="qylx" jdbcType="VARCHAR" />
+    <result column="qylxmc" property="qylxmc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, qylx, qylxmc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_qylx
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_qylx
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cnct.web.model.po.Qylx" >
+    insert into t_qylx (id, qylx, qylxmc
+      )
+    values (#{id,jdbcType=BIGINT}, #{qylx,jdbcType=VARCHAR}, #{qylxmc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnct.web.model.po.Qylx" >
+    insert into t_qylx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="qylx != null" >
+        qylx,
+      </if>
+      <if test="qylxmc != null" >
+        qylxmc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="qylx != null" >
+        #{qylx,jdbcType=VARCHAR},
+      </if>
+      <if test="qylxmc != null" >
+        #{qylxmc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnct.web.model.po.Qylx" >
+    update t_qylx
+    <set >
+      <if test="qylx != null" >
+        qylx = #{qylx,jdbcType=VARCHAR},
+      </if>
+      <if test="qylxmc != null" >
+        qylxmc = #{qylxmc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnct.web.model.po.Qylx" >
+    update t_qylx
+    set qylx = #{qylx,jdbcType=VARCHAR},
+      qylxmc = #{qylxmc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

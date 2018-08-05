@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cnct.goods.mapper.PayWayMapper" >
+  <resultMap id="BaseResultMap" type="com.cnct.goods.model.po.PayWay" >
+    <id column="pay_way_id" property="payWayId" jdbcType="CHAR" />
+    <result column="pay_way_name" property="payWayName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pay_way_id, pay_way_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_pay_way
+    where pay_way_id = #{payWayId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_pay_way
+    where pay_way_id = #{payWayId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cnct.goods.model.po.PayWay" >
+    insert into t_pay_way (pay_way_id, pay_way_name)
+    values (#{payWayId,jdbcType=CHAR}, #{payWayName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cnct.goods.model.po.PayWay" >
+    insert into t_pay_way
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="payWayId != null" >
+        pay_way_id,
+      </if>
+      <if test="payWayName != null" >
+        pay_way_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="payWayId != null" >
+        #{payWayId,jdbcType=CHAR},
+      </if>
+      <if test="payWayName != null" >
+        #{payWayName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cnct.goods.model.po.PayWay" >
+    update t_pay_way
+    <set >
+      <if test="payWayName != null" >
+        pay_way_name = #{payWayName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pay_way_id = #{payWayId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cnct.goods.model.po.PayWay" >
+    update t_pay_way
+    set pay_way_name = #{payWayName,jdbcType=VARCHAR}
+    where pay_way_id = #{payWayId,jdbcType=CHAR}
+  </update>
+</mapper>
